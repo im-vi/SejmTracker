@@ -7,12 +7,10 @@ const unid = urlParams.get('unid');
 
 async function showStream() {
     const data = await getData(`https://api.sejm.gov.pl/sejm/term10/videos/${unid}`);
-    hideLoadingOverlay();
 
     let back = document.createElement("p");
     let header = document.createElement("h1");
     let desc = document.createElement("p");
-    let streamEmbed = document.createElement("div");
 
     back.innerHTML = `<a href="/live.html">< Powrót do wyboru transmisji</a>`;
     header.textContent = data.title;
@@ -21,14 +19,25 @@ async function showStream() {
     } else {
         desc.innerHTML = `<i>Brak opisu.</i>`;
     }
-    streamEmbed.innerHTML = `<iframe id="videoPlayerFrame" width="912" height="710" src="https://sejm.gov.pl/Sejm10.nsf/VideoFrame.xsp/${unid}" frameborder="0" allowfullscreen></iframe>`
-    let cont = document.getElementById("stream-container");
+    document.getElementById("SejmPlayer").dataset.src = data.videoLink;
+    let cont = document.getElementById("stream-info");
     cont.appendChild(back);
     cont.appendChild(header);
     cont.appendChild(desc);
-    cont.appendChild(streamEmbed);
 
     document.title = `${data.title} | SejmTracker`;
 }
 
 showStream();
+
+function handleDeviceWidth() {
+    if (window.innerWidth <= 1120) {
+        document.getElementById("SejmPlayer").className = "video-js";
+    } else {
+        document.getElementById("SejmPlayer").className = "video-js desktop-player";
+    }
+}
+
+handleDeviceWidth();
+
+window.addEventListener('resize', handleDeviceWidth);

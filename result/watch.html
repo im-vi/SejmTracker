@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MGQNSPEFH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-8MGQNSPEFH');
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-W7Z2QZKT');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/assets/navbar.css">
     <script src="/scripts/navbar.js"></script>
     <script src="/scripts/footer.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/google.js"></script>
     <script src="https://kit.fontawesome.com/1074444b18.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/assets/SEJMTRACKER-NOWE.png">
@@ -33,10 +17,6 @@
     <title>Transmisja | SejmTracker</title>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7Z2QZKT"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="navbar-container"></div>
     <div class="loader-overlay" id="loaderOverlay">
         <div class="loader-container" id="loaderContainer">
@@ -44,13 +24,19 @@
             <p id="loadingText">Wczytuję dane...</p>
         </div>
     </div>
-    <div id="stream-container"></div>
+    <div id="stream-container">
+        <div id="stream-info"></div>
+        <div id="video-container">
+            <video id="SejmPlayer" class="video-js" controls playsinline preload="auto" data-type="application/x-mpegURL"></video>
+        </div>
+    </div>
     <br>
     <button id="scrollToTopButton" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
     <script>
         updateNavbar();
     </script>
-    <script src="/scripts/main.js"></script>
+
+    <script src="/assets/SejmPlayer/player.js" defer></script>
     <script src="/scripts/stream.js"></script>
 </body>
 </html>

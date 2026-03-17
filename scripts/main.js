@@ -45,4 +45,3 @@ function create(selector, content, id, className) {
   elem.innerHTML = content;
   return elem;
 }
-

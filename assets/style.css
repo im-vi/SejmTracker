@@ -297,6 +297,7 @@ button:hover {
     width: 20vw;
 }
 
-.stream-container video{
-    width: 90vw;
+.desktop-player{
+    width: 50vw;
+    height: 50vh;
 }
